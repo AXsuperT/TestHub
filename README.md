@@ -123,7 +123,7 @@ cd backend
 mvn spring-boot:run
 ```
 
-启动后访问 API 文档: http://localhost:8080/api/doc.html
+启动后访问 API 文档: http://localhost:8088/api/doc.html
 
 ### 前端启动
 
@@ -142,7 +142,7 @@ cd test-engine
 pip install -r requirements.txt
 
 # 运行接口测试
-python run_test.py --type api --config api_test/example_cases.json --base-url http://localhost:8080/api
+python run_test.py --type api --config api_test/example_cases.json --base-url http://localhost:8088/api
 
 # 运行性能测试
 python run_test.py --type perf --config perf_test/example_perf.json
