@@ -1,0 +1,41 @@
+# Backend
+target/
+*.class
+*.jar
+*.war
+
+# Frontend
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Uploads & Reports
+uploads/
+reports/
+screenshots/
+
+# Env
+.env
+.env.local

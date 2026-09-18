@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "用户登录-正常",
+    "method": "POST",
+    "url": "/auth/login",
+    "headers": {"Content-Type": "application/json"},
+    "body_type": "JSON",
+    "body": "{\"username\": \"admin\", \"password\": \"admin123\"}",
+    "assertions": [
+      {"field": "statusCode", "operator": "equals", "expected": 200},
+      {"field": "$.code", "operator": "equals", "expected": 200},
+      {"field": "$.data.token", "operator": "notNull"}
+    ],
+    "extract_vars": [
+      {"name": "token", "path": "$.data.token"}
+    ],
+    "timeout": 10000
+  },
+  {
+    "id": 2,
+    "name": "用户登录-密码错误",
+    "method": "POST",
+    "url": "/auth/login",
+    "headers": {"Content-Type": "application/json"},
+    "body_type": "JSON",
+    "body": "{\"username\": \"admin\", \"password\": \"wrong\"}",
+    "assertions": [
+      {"field": "$.message", "operator": "contains", "expected": "密码"}
+    ],
+    "timeout": 10000
+  },
+  {
+    "id": 3,
+    "name": "获取项目列表",
+    "method": "GET",
+    "url": "/projects/list",
+    "headers": {"Authorization": "{{token}}"},
+    "assertions": [
+      {"field": "statusCode", "operator": "equals", "expected": 200},
+      {"field": "$.data", "operator": "notNull"}
+    ],
+    "timeout": 10000
+  }
+]

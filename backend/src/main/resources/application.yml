@@ -1,0 +1,74 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: testhub-backend
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testhub?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: HXC123456
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 5000ms
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.testhub.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT 配置
+jwt:
+  secret: testhub-secret-key-2024-for-testing-platform-enterprise
+  expiration: 86400000
+  header: Authorization
+
+# AI 配置 (大模型 API)
+ai:
+  enabled: true
+  api-key: ${AI_API_KEY:sk-your-api-key-here}
+  base-url: https://api.openai.com/v1
+  model: gpt-4o-mini
+  timeout: 30000
+
+# 文件上传路径
+file:
+  upload-path: ./uploads/
+  report-path: ./reports/
+
+# 接口测试默认基础URL
+testhub:
+  api:
+    base-url: http://localhost:8088
+
+# 日志配置
+logging:
+  level:
+    com.testhub: debug
+    org.springframework: info
